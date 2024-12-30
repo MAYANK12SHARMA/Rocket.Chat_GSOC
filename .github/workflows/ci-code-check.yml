@@ -54,16 +54,17 @@ jobs:
         with:
           name: turbo-build
           path: .turbo/cache
-      - name: Cache TypeCheck
-        uses: actions/cache@v4
-        if: matrix.check == 'ts'
-        with:
-          path: ./apps/meteor/tsconfig.typecheck.tsbuildinfo
-          key: typecheck-cache-${{ runner.OS }}-${{ hashFiles('yarn.lock') }}-${{ github.event.issue.number }}
-          restore-keys: |
-            typecheck-cache-${{ runner.OS }}-${{ hashFiles('yarn.lock') }}
-            typecheck-cache-${{ runner.OS }}
-            typecheck-cache
+
+      # - name: Cache TypeCheck
+      #   uses: actions/cache@v4
+      #   if: matrix.check == 'ts'
+      #   with:
+      #     path: ./apps/meteor/tsconfig.typecheck.tsbuildinfo
+      #     key: typecheck-cache-${{ runner.OS }}-${{ hashFiles('yarn.lock') }}-${{ github.event.issue.number }}
+      #     restore-keys: |
+      #       typecheck-cache-${{ runner.OS }}-${{ hashFiles('yarn.lock') }}
+      #       typecheck-cache-${{ runner.OS }}
+      #       typecheck-cache
 
       - name: TS TypeCheck
         if: matrix.check == 'ts'
