@@ -66,6 +66,10 @@ jobs:
       #       typecheck-cache-${{ runner.OS }}
       #       typecheck-cache
 
+      - name: Meteor Lint
+        working-directory: ./apps/meteor
+        run: meteor lint
+
       - name: TS TypeCheck
         if: matrix.check == 'ts'
         run: yarn turbo run typecheck
